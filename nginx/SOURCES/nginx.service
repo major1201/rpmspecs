@@ -1,0 +1,17 @@
+[Unit]
+Description=The NGINX HTTP and reverse proxy server
+;After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=/var/run/nginx.pid
+ExecStartPre=/usr/local/nginx/sbin/nginx -t
+ExecStartPost=/usr/bin/echo "Start Nginx server [OK]."
+ExecStart=/usr/local/nginx/sbin/nginx
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/usr/local/nginx/sbin/nginx -s stop
+ExecStopPost=/usr/bin/echo "Stop Nginx server [OK]."
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,4 @@
+*.rpm
+
+.DS_Store
+.Spotlight-v100
